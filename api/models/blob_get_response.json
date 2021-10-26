@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "required": [
+        "labels"
+    ],
+    "properties": {
+        "labels": {
+            "type": "array",
+            "title": "The labels schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "additionalItems": true,
+            "items": {
+                "type": "string",
+                "title": "The items schema",
+                "description": "Each resulting entity."
+            }
+        }
+    },
+    "additionalProperties": true
+}

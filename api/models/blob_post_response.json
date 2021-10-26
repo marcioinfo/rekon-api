@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "required": [
+        "blob_id",
+        "presigned_url"
+    ],
+    "properties": {
+        "blob_id": {
+            "type": "string",
+            "title": "The blob_id schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": ""
+        },
+        "presigned_url": {
+            "type": "string",
+            "title": "The presigned_url schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": ""
+        }
+    },
+    "additionalProperties": false
+}

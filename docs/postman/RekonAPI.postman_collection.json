@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "d37293d5-cb00-4356-af39-5341daea8760",
+		"name": "RekonAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/blobs/{blob_id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/blobs/{{blob_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blobs",
+						"{{blob_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/blobs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"blob_id\", jsonData['blob_id']);",
+							"pm.environment.set(\"presigned_url\", jsonData['presigned_url']);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"callback_url\": \"https://webhook.site/6eab08fc-bd43-4794-8db6-32165ae783d1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/blobs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "s3-bucket",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/home/fmilan/Downloads/TestCases/test1.jpeg"
+					}
+				},
+				"url": {
+					"raw": "{{presigned_url}}",
+					"host": [
+						"{{presigned_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
