@@ -1,6 +1,6 @@
 service: rekon-api
 
-#frameworkVersion: '2'
+frameworkVersion: '2'
 
 
 provider:

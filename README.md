@@ -104,9 +104,18 @@ In order to test callback_url on the post Request you can user [webhook-site](ht
 
 * curl
  ```shell script
+# Post Request
 curl --location --request POST 'https://mbr4a662j6.execute-api.us-east-1.amazonaws.com/dev/blobs' \
 --header 'Content-Type: application/json' \
 --data-raw '{"callback_url": "https://webhook.site/5f735c59-2fb3-472e-bba3-ac1664f2bb2d"}'
+
+# Put Request
+curl --location --request PUT 'https://blob-presigned.s3.amazonaws.com/...' \
+--header 'Content-Type: text/plain' \
+--data-binary '/TestCases/test2.png'
+
+# Get Request
+curl --location --request GET 'https://mbr4a662j6.execute-api.us-east-1.amazonaws.com/dev/blobs/189b51c2-7b97-471d-a5c7-9ebceeb9db64'
   ```
 As a quick start import Postman requests, [collections](docs/postman/RekonAPI.postman_collection.json) and [environments](docs/postman/RekonAPI%20Dev.postman_environment.json) to Testfully. 
 To do so, import the colletion and update the base_url in the environment variables of postman.
