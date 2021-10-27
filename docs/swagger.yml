@@ -1,0 +1,132 @@
+openapi: 3.0.1
+info:
+  title: dev-rekon-api
+  description: API to get a presigned URL
+  contact:
+    name: Elison Márcio Correa
+    url: https://www.serverless.com/framework
+    email: marcioinfo.correa@gmail.com
+  license:
+    name: The license
+    url: https://github.com/marcioinfo/api-rekognition/tree/api
+  version: '2021-10-26T19:35:51Z'
+servers:
+  - url: https://dms2rpbs98.execute-api.us-east-1.amazonaws.com/{basePath}
+    variables:
+      basePath:
+        default: /dev
+tags:
+  - name: demo
+    description: staicase demo
+paths:
+  /blobs/{blob_id}:
+    get:
+      tags:
+        - rekon_Labels
+      summary: Gets Rekognition Labels
+      description: |
+        GET method. to Retriver the Rekognition Labels basead in a blob_id
+      parameters:
+        - name: blob_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlobRetrieveResponse'
+  /blobs:
+    post:
+      tags:
+        - presigned_url
+      summary: Post Rekognition Presigned URL
+      description: POST method. that return a presigned_url with 3600 second.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlobCreationRequest'
+        required: true
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlobCreationResponse'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlobErrorResponse'
+components:
+  schemas:
+    BlobCreationResponse:
+      title: The root schema
+      required:
+        - blob_id
+        - presigned_url
+      type: object
+      properties:
+        blob_id:
+          title: The blob_id schema
+          type: string
+          description: An explanation about the purpose of this instance.
+          default: ''
+        presigned_url:
+          title: The presigned_url schema
+          type: string
+          description: An explanation about the purpose of this instance.
+          default: ''
+      additionalProperties: false
+      description: The root schema comprises the entire JSON document.
+      default: {}
+    BlobErrorResponse:
+      title: The root schema
+      required:
+        - error
+      type: object
+      properties:
+        error:
+          title: The error schema
+          type: string
+          description: An explanation about the purpose of this instance.
+          default: ''
+      additionalProperties: false
+      description: The root schema comprises the entire JSON document.
+      default: {}
+    BlobRetrieveResponse:
+      title: The root schema
+      required:
+        - labels
+      type: object
+      properties:
+        labels:
+          title: The labels schema
+          type: array
+          description: An explanation about the purpose of this instance.
+          items:
+            title: The items schema
+            type: string
+            description: Each resulting entity.
+          default: []
+      additionalProperties: true
+      description: The root schema comprises the entire JSON document.
+      default: {}
+    BlobCreationRequest:
+      title: The root schema
+      type: object
+      properties:
+        callback_url:
+          title: The callback_url schema
+          type: string
+          description: url used to provide a callback to the user.
+          default: ''
+      additionalProperties: false
+      description: The root schema comprises the entire JSON document.
+      default: {}
