@@ -1,0 +1,6 @@
+projectKey=Tests-python
+serverUrl=http://127.0.0.1:8088
+serverVersion=9.2.1.49989
+dashboardUrl=http://127.0.0.1:8088/dashboard?id=Tests-python
+ceTaskId=AX2VVTMUIBwUXbhkQEYQ
+ceTaskUrl=http://127.0.0.1:8088/api/ce/task?id=AX2VVTMUIBwUXbhkQEYQ
